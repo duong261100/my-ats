@@ -3,13 +3,13 @@
     <img class="w-full h-full object-cover" src="~/assets/image/banner-background.jpg" alt="">
     <div class="container absolute left-0 right-0 bottom-[100px]">
       <h2>Find Job</h2>
-      <h3 class="text-white/70">We help you to get your best job fatser and easier</h3>
+      <h3 class="text-white/70">We provide you with best jobs faster and easier</h3>
       <div class="w-full relative inline-block mt-[20px]">
 
         <div class="flex mt-[70px] w-full rounded-[3px] bg-white ">
           <!-- Search Field -->
           <div class="input-container">
-            <label for="intro-keywords">What job are you looking
+            <label class="label-custom" for="intro-keywords">What job are you looking
               for?</label>
             <input class="text-black font-normal leading-[27px] text-[15.5px] p-[5px]" id="intro-keywords"
               name="search_keywords" type="text" placeholder="Job title">
@@ -17,16 +17,27 @@
 
           <!-- Search Field -->
           <div class="input-container">
-            <label for="intro-keywords">Where?</label>
-            <input class="text-black font-normal leading-[27px] text-[15.5px] p-[5px]" id="intro-keywords"
-              name="search_keywords" type="text" placeholder="Hanoi">
+            <label class="label-custom" for="intro-keywords">Where?</label>
+            <select class="w-full h-full text-black font-normal leading-[27px] text-[15.5px] p-[5px]"
+              id="intro-keywords" name="search_keywords" type="text" placeholder="Junior">
+              <option value="intern">Hà Nội</option>
+              <option value="fresher">TP. Hồ Chí Minh</option>
+              <option value="junior">Đà Nẵng</option>
+              <option value="middle">Hải Phòng</option>
+            </select>
           </div>
 
           <!-- Search Field -->
           <div class="input-container !border-none">
-            <label for="intro-keywords">Where?</label>
-            <input class="text-black font-normal leading-[27px] text-[15.5px] p-[5px]" id="intro-keywords"
-              name="search_keywords" type="text" placeholder="Hanoi">
+            <label class="label-custom" for="intro-keywords">Your level?</label>
+            <select class="w-full h-full text-black font-normal leading-[27px] text-[15.5px] p-[5px]"
+              id="intro-keywords" name="search_keywords" type="text" placeholder="Junior">
+              <option value="intern">Intern</option>
+              <option value="fresher">Fresher</option>
+              <option value="junior">Junior</option>
+              <option value="middle">Middle</option>
+              <option value="senior">Senior</option>
+            </select>
           </div>
 
           <!-- Search Field -->
@@ -54,20 +65,6 @@ export default {
 </script>
 
 <style scoped>
-label {
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
-  padding: 5px 10px;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 22px;
-  transform: translateY(calc(-100% - 15px));
-}
-
 .input-container {
   position: relative;
   display: flex;

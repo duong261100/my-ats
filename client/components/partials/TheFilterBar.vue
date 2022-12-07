@@ -8,7 +8,7 @@
     ">
     <!-- Search Filter -->
     <div>
-      <h3>Search</h3>
+      <h3>Title</h3>
       <div class="
           relative
           flex
@@ -28,12 +28,12 @@
 
     <!-- Price Filter -->
     <div>
-      <h3>Price</h3>
+      <h3>Salary</h3>
       <ul>
         <li v-for="priceRange in priceRangeFilter" :key="priceRange.id">
           <label class="text-grey text-[16px]">
-            <input v-model="priceRange.isSelected" name="checkbox" @change="uniqueCheck($event, priceRange.id)" type="checkbox"
-              class="radio mr-[5px] " />
+            <input v-model="priceRange.isSelected" name="checkbox" @change="uniqueCheck($event, priceRange.id)"
+              type="checkbox" class="radio mr-[5px] " />
             {{ priceRange.label }}
           </label>
         </li>
@@ -42,8 +42,8 @@
 
     <!-- Categories Filter -->
     <div>
-      <h3>Categories</h3>
-      <button v-for="(category, index) in categories" :key="index" class="tag-custom"
+      <h3>Skills</h3>
+      <button v-for="(category, index) in categories" :key="index" class="tag-filter-custom"
         :class="{ active: category.isActive }" @click="category.isActive = !category.isActive">
         {{ category.name }}
       </button>
@@ -51,7 +51,7 @@
 
     <!-- Languages Filter -->
     <div>
-      <h3>Language</h3>
+      <h3>Province</h3>
       <select v-model="languageSelected" class="
           w-full h-[44px]
           pl-[10px] pr-[40px] py-[2px]
@@ -70,7 +70,6 @@
 
 <script>
 import languageAPI from '../../apis/languages'
-import categoryAPI from '../../apis/categories'
 export default {
   data() {
     return {
@@ -78,48 +77,47 @@ export default {
       priceRangeFilter: [
         {
           id: 1,
-          label: '0đ - 50,000đ',
+          label: 'Under 5.000.000đ',
           fromValue: 0,
           toValue: 50000,
           isSelected: false,
         },
         {
           id: 2,
-          label: '50,000đ - 100,000đ',
+          label: '5.000.000đ - 15.000.000đ',
           fromValue: 50000,
           toValue: 100000,
           isSelected: false,
         },
         {
           id: 3,
-          label: '100,000đ - 200,000đ',
+          label: '15.000.000đ - 30.000.000đ',
           fromValue: 100000,
           toValue: 200000,
           isSelected: false,
         },
         {
           id: 4,
-          label: '200,000đ - 350,000đ',
+          label: '30.000.000đ - 50.000.000đ',
           fromValue: 200000,
           toValue: 350000,
           isSelected: false,
         },
         {
           id: 5,
-          label: 'Trên 350,000đ',
+          label: 'Over 50.000.000đ',
           fromValue: 350000,
           toValue: 999999999,
           isSelected: false,
         },
       ],
-      categories: [],
+      categories: [{ name: "Backend" }, { name: "Frontend" }, { name: "Golang" }, { name: "Java" }, { name: "NodeJS" }, { name: "NoSQL" }, { name: "Nuxt" }, { name: "Python" }, { name: "SQL" }, { name: "Vue" }, { name: "Zodiac" }],
       languages: [],
       languageSelected: '',
     }
   },
   async fetch() {
-    const res = await categoryAPI.getAllCategories()
-    this.categories = res.map((obj) => ({ ...obj, isActive: false }))
+    this.categories = this.categories.map((obj) => ({ ...obj, isActive: false }))
     this.languages = await languageAPI.getAllLanguages()
   },
   methods: {
@@ -156,3 +154,9 @@ export default {
   }
 }
 </script>
+<style scoped>
+h3 {
+  font-weight: 400;
+
+}
+</style>

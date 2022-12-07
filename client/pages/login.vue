@@ -139,6 +139,8 @@ export default {
         let res = await this.$auth.loginWith('local', {
           data: this.dataLogin
         })
+        console.log('logined')
+        console.log(res)
 
         this.$auth.strategy.token.set(res.data.accessToken)
         this.$auth.strategy.refreshToken.set(res.data.user.refresh_token)

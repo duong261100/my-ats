@@ -1,30 +1,78 @@
 <template>
   <div class="container">
-    <div class="grid grid-cols-12 gap-[40px]">
-      <div class="col-span-4 p-[30px]">
-        <img class="w-full border-solid border-[1px] border-[#666]"
-          :src="user.image || '../../_nuxt/assets/image/default-avatar.jpg'" alt="" />
+    <div class="grid grid-cols-12 gap-[60px] p-[30px] w-[90%]">
+      <div class="col-span-4">
+        <img class="w-full mb-[20px]"
+          src="https://storage.googleapis.com/book-store-41a6b.appspot.com/1667411293360.post-image-1?GoogleAccessId=firebase-adminsdk-1lna4%40book-store-41a6b.iam.gserviceaccount.com&Expires=1893430800&Signature=rqfkHCI18Kd4GPAct0QXw%2BiaN3h8cpTt1I32idOzQQh%2FE8NUGFsi3TJwXGyfMlXlZjRLASDosr5w7hfsdVJRaBnKV1EEg4QUFBUh2FiOt5TP1b1xeSI2zOBNWb4ygPoXEYhMrybTWbjfLzowSg9UFLJnTthb8C0uPhuLb5xqWmvtGC5f4PGpnwWZGNjwBuePuiLCDptAccVRrIIrZjtzJyWDiA61sdRMoGIFb5TsI3gNQLKiUgmVRIH7VZLUbZpRFi5c7MaPaRsXYwg6UkUTJUngYjxdHT7jnoNMc9RDPXBX%2BU8M%2B9lreBlxXN0LO6mdNv7tG%2F5MykEiySd3GLB8YQ%3D%3D"
+          alt="" />
+        <div class="space-y-[10px] text-[#808080]">
+          <div class="flex my-[20px]">
+            <h4 class="inline-block font-medium text-[16px] uppercase mr-[10px]">Contact</h4>
+            <span class="grow-1 w-full h-[2px] inline-block m-auto border-b-[1px] border-solid border-[#ddd]"></span>
+          </div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-envelope" />
+            vubinhduong261100@gmail.com
+          </div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-phone" />
+            0123456789
+          </div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-address-book" />
+            22 Lương Khánh Thiện, Tương Mai, Hoàng Mai, Hà Nội
+          </div>
+          <div class="flex !mt-[30px]">
+            <h4 class="inline-block font-medium text-[16px] uppercase mr-[10px]">Personal</h4>
+            <span class="grow-1 w-full h-[2px] inline-block m-auto border-b-[1px] border-solid border-[#ddd]"></span>
+          </div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-cake-candles" />
+            26 / 11 / 2000
+          </div>
+          <div>
+            <font-awesome-icon icon="fa-solid fa-rocket" />
+            Chơi bóng đá, nghe nhạc, xem phim
+          </div>
+        </div>
       </div>
-      <div class="col-span-7 pt-[50px] space-y-[15px]">
-        <div>
-          <label>Fullname: </label>
-          <input type="text" v-model="user.fullname" class="info-input">
+      <div class="col-span-8">
+        <h3 class="font-medium">Jeremy Rose</h3>
+        <p class="text-blue-main font-medium mb-[20px]">Product Designer</p>
+        <div class="flex my-[20px]">
+          <h4 class="inline-block font-medium text-[16px] uppercase mr-[10px]">Summary</h4>
+          <span class="grow-1 w-full h-[2px] inline-block m-auto border-b-[1px] border-solid border-[#ddd]"></span>
         </div>
-        <div>
-          <label>Email: </label>
-          <input type="text" v-model="user.email" disabled class="info-input">
+        <p class="mb-[20px]">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, a dolores quas
+          voluptatibus dicta culpa
+          facere corrupti, omnis quae repudiandae obcaecati eligendi? Accusamus corrupti atque et. Commodi corrupti
+          quasi quibusdam.</p>
+        <div class="flex my-[20px]">
+          <h4 class="inline-block font-medium text-[16px] uppercase mr-[10px]">Skills</h4>
+          <span class="grow-1 w-full h-[2px] inline-block m-auto border-b-[1px] border-solid border-[#ddd]"></span>
         </div>
-        <div>
-          <label>Avatar: </label>
-          <input id="file" type="file" ref="file" @change="handleUpload()" />
+        <div class="mb-[20px]">
+          <button v-for="i in 8" class="tag-custom mr-[10px] mb-[10px]">React Native</button>
+          <button class="tag-custom mr-[10px] mb-[10px]">+</button>
         </div>
-        <label class="!block !mb-[5px]">Address: </label>
-        <textarea v-model="user.address" cols="60" rows="4" class="px-[10px] py-[5px] rounded-[5px]" />
-        <div>
+        <div class="flex my-[20px]">
+          <h4 class="inline-block font-medium text-[16px] uppercase mr-[10px]">Experience</h4>
+          <span class="grow-1 w-full h-[2px] inline-block m-auto border-b-[1px] border-solid border-[#ddd]"></span>
+        </div>
+        <div v-for="i in 2" class="mb-[15px]">
+          <h6 class="font-medium">Junior Ruby Backend</h6>
+          <div class="flex justify-between italic">
+            <span class="font-medium text-[13px] text-black">Sun* Asterisk</span>
+            <span>01/06/2021 - 01/08/2021</span>
+          </div>
+          <p class="text-[13px]">Developing with Nuxt, Express and MySQL (Typescript, Tailwind) <br />
+            Basic ecommerce web with cart, filter search, multi-tags search, sort and pagination</p>
+        </div>
+        <div class="flex justify-end !mt-[20px]">
           <button @click="updateProfile"
-            class="btn-solid border-[#00c851] rounded-[5px] bg-[#00c851] text-white hover:text-[#00c851] hover:border-[#00c851]">Update</button>
+            class="border-[#00c851] rounded-[5px] bg-[#00c851] disabled text-white px-[15px] py-[5px] mr-[10px]">Update</button>
           <nuxt-link :to="{ path: '/' }" tag="button"
-            class="btn-solid border-[#ff4444] rounded-[5px] bg-[#ff4444] text-white hover:text-[#ff4444] hover:border-[#ff4444]">
+            class="border-[#ff4444] rounded-[5px] bg-[#ff4444] text-white px-[15px] py-[5px">
             Cancel</nuxt-link>
         </div>
       </div>
@@ -37,7 +85,7 @@ import userAPI from "../../apis/users"
 import axios from 'axios'
 export default {
   meta: {
-    auth: { authority: 1 }
+    auth: { authority: 0 }
   },
   data() {
     return {

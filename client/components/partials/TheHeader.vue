@@ -2,7 +2,7 @@
   <div class="text-white">
 
     <!-- Cart - Login - Register - Logout - Profile -->
-    <div class="py-[10px]">
+    <div class="pt-[20px]">
       <div class="container">
         <div class="
             flex
@@ -10,22 +10,21 @@
             space-x-[20px]
             transition-none
           ">
-          <nuxt-link to="/cart" tag="button" class="mt-[3px] text-[20px] hover:text-blue-soft">
-            <font-awesome-icon icon="fa-solid fa-cart-shopping" />
-          </nuxt-link>
           <!-- logout - profile -->
           <span v-if="this.$auth.loggedIn" class="flex items-center">
+            <nuxt-link to="/cart" tag="button" class="mt-[3px] text-[20px] hover:text-blue-soft">
+              <font-awesome-icon icon="fa-solid fa-bell" />
+            </nuxt-link>
             <button @click="logout()" class="text-[20px] hover:text-blue-soft">
               <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
             </button>
             <nuxt-link to="/users/profile">
               <img class="min-w-[35px] max-w-[35px] max-h-[35px] rounded-full ml-[20px] -mr-[30px] cursor-pointer"
-                :src="this.$auth.user.image || '../../_nuxt/assets/image/default-avatar.jpg'"
-                alt="" />
+                :src="this.$auth.user.image || '../../_nuxt/assets/image/default-avatar.jpg'" alt="" />
             </nuxt-link>
           </span>
           <!-- login - register -->
-          <span v-else class="flex items-center space-x-[10px]">
+          <span v-else class="flex items-center space-x-[10px] text-white">
             <nuxt-link to="/login" tag="button" class="btn btn-default hover:text-blue-soft">Login</nuxt-link>
             <nuxt-link to="/login" tag="button" class="btn btn-default hover:text-blue-soft">Register</nuxt-link>
           </span>
@@ -52,6 +51,19 @@
             <li>
               <nuxt-link to="/" class="underline-animation">Home</nuxt-link>
             </li>
+            <li>
+              <nuxt-link to="/jobs/search" class="underline-animation">
+                Filter Search</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="/jobs/applied" class="underline-animation">
+                Applied Job</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="/users/profile" class="underline-animation">
+                My Profile</nuxt-link>
+            </li>
+            <li><a href="#" class="underline-animation">About Us</a></li>
             <li class="relative group">
               <a href="#" class="underline-animation">Languages</a>
               <ul class="
@@ -70,33 +82,6 @@
                 </nuxt-link>
               </ul>
             </li>
-            <li class="relative group">
-              <a href="#" class="underline-animation">Genres</a>
-              <ul class="
-                  dropdown-custom
-                  grid grid-cols-5
-                  invisible
-                  w-[600px]
-                  opacity-0
-                  group-hover:opacity-100 group-hover:visible group-hover:top-[37px]
-                ">
-                <nuxt-link v-for="(category, index) in categories" :key="index"
-                  :to="{ name: 'books-search-params', params: { searchData: { categoriesSelectedId: [category.category_id] } } }">
-                  <li>
-                    {{ category.name }}
-                  </li>
-                </nuxt-link>
-              </ul>
-            </li>
-            <li>
-              <nuxt-link :to="{ name: 'books-search-params' }" class="underline-animation">
-                Filter Search</nuxt-link>
-            </li>
-            <li>
-              <nuxt-link to="/authors" class="underline-animation">
-                Authors</nuxt-link>
-            </li>
-            <li><a href="#" class="underline-animation">About Us</a></li>
           </ul>
         </div>
       </div>

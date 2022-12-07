@@ -2,7 +2,9 @@ import axios, { AxiosResponse } from 'axios'
 
 export default class API {
   static async login() {
+    console.log('login')
     const res:AxiosResponse = await axios.post('/session')
+    console.log(res.data)
     return res.data
   }
 

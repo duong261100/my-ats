@@ -1,9 +1,9 @@
 <template>
-  <div class="container grid grid-cols-4">
-    <the-filter-bar @search="search" />
+  <div class="container grid grid-cols-7 gap-[30px]">
+    <the-filter-bar class="col-span-2" @search="search" />
 
     <!-- Content -->
-    <list-search-result :books="books" />
+    <list-search-result class="col-span-5" :books="books" />
   </div>
 </template>
 

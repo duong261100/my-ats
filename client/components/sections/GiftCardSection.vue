@@ -1,32 +1,19 @@
 <template>
-  <div class="w-full bg-blue-soft text-white">
+  <div class="ads-section py-[70px] w-full text-white">
     <div class="container relative flex flex-col pt-[30px] pb-[50px]">
-      <h2 class="m-auto mb-[20px]">Book store gift card</h2>
-      <div class="break-line-custom double-break-line-custom !mb-[30px] text-white" />
-
-      <!-- Laptop Background -->
-      <div class="absolute left-[50%] bottom-[-25px] w-[890px]">
-        <img src="~/assets/image/gift-card.png" alt="" />
-      </div>
-
-      <!-- Gift Cards -->
-      <div v-for="giftCard in giftCards">
-        <div class="float-left w-[50%]">
-          <div class="w-full px-[20px] py-[20px] hover:bg-blue-soft-hover">
-            <font-awesome-icon :icon="giftCard.icon" class="text-[25px]" />
-            <h4 class="
-                  inline-block
-                  ml-[10px] mb-[10px]
-                  uppercase text-[25px] font-bold
-                ">
-              {{ giftCard.title }}
-            </h4>
-            <p>
-              {{ giftCard.description }}
-            </p>
+      <h2 class="mb-[20px] w-1/2">Explore a faster, easier, and better job search</h2>
+      <div v-for="content in contents">
+        <div class="float-left w-[40%]">
+          <div class="flex items-center px-[30px] py-[10px] w-full">
+            <font-awesome-icon class="mr-[20px] text-green-main" icon="fa-solid fa-check" />
+            <h5 class="text-gray-main">
+              {{ content }}
+            </h5>
           </div>
         </div>
       </div>
+      <img class="absolute right-[-200px] bottom-0 mr-[200px] rounded-[7px] w-[500px] h-[400px] object-cover"
+        src="~/assets/image/ads-image.jpg" alt="">
     </div>
   </div>
 </template>
@@ -35,27 +22,20 @@
 export default {
   data() {
     return {
-      giftCards: [
-        {
-          icon: 'fa-solid fa-gift',
-          title: 'Any occasion',
-          description:
-            'The great philosopher Blaise Pascal believed that human misfortune was the result of other people’s inability “to sit quietly in one’s room”',
-        },
-        {
-          icon: 'fa-solid fa-graduation-cap',
-          title: 'Special occasion',
-          description:
-            'Here are many special occasions in the lives of our friends, family and colleagues, and each offers an opportunity to commemorate the day with a unique and personalised book.',
-        },
-        {
-          icon: 'fa-solid fa-face-smile',
-          title: 'Cards for kids',
-          description:
-            'The thrill of double war. The excitement of shouting "Gin!" Every kid knows at least a handful of card classics, and every grown up kid remembers the fun of playing them.',
-        },
+      contents: [
+        "Unmatched quality of remote, hybrid, and flexible jobs",
+        "Premium skills tests, remote courses, career coaching, and more",
+        "Unmatched quality of remote, hybrid, and flexible jobs"
       ],
     }
   },
 }
 </script>
+<style scoped>
+.ads-section {
+  background-image: url('~/assets/image/ads-banner.svg');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
