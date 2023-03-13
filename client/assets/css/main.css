@@ -215,4 +215,9 @@
     height: 100%;
     background-color: rgba(30, 30, 30, 0.67);
   }
+
+  .required::after {
+    content: ' *';
+    color: red;
+  }
 }

@@ -1,36 +1,52 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  ssr: false,
   head: {
-    title: 'Book Store',
+    title: 'My ATS',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'google-signin-client_id',
+        content:
+          '724953140197-6nmrq14e01431303c29hh1j5re98jb0q.apps.googleusercontent.com',
+      },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/logo.png' }],
+    script: [
+      {
+        src: 'https://apis.google.com/js/platform.js',
+        async: true,
+        defer: true,
+      },
     ],
   },
 
   server: {
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.css',
     '@fortawesome/fontawesome-svg-core/styles.css',
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/scss/app.scss',
+    '~/assets/scss/override.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/element-ui',
     '~/plugins/fontawesome.ts',
     '~/plugins/helpers.ts',
-    { src: '~/interceptors/axios.ts', ssr: true },
+    '~/plugins/apexchart.js',
+    // { src: '~/interceptors/axios.ts', ssr: true },
   ],
 
   render: { fallback: false },
@@ -50,6 +66,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/vuetify',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -72,9 +89,7 @@ export default {
   },
 
   auth: {
-    redirect: {
-      callback: '/', //sau khi login sẽ chuyển hướng về đây
-    },
+    redirect: false,
     strategies: {
       local: {
         scheme: 'refresh',
@@ -106,7 +121,6 @@ export default {
         redirect: {
           login: '/login',
           logout: '/',
-          home: '/',
         },
       },
     },

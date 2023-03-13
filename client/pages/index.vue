@@ -3,7 +3,6 @@
     <buy-section />
     <service-section />
     <gift-card-section />
-    <service-section />
   </div>
 </template>
 

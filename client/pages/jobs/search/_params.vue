@@ -3,43 +3,40 @@
     <the-filter-bar class="col-span-2" @search="search" />
 
     <!-- Content -->
-    <list-search-result class="col-span-5" :books="books" />
+    <list-search-result class="col-span-5" :jobs="jobs" />
   </div>
 </template>
 
 <script>
-import searchAPI from '../../../apis/search'
-import categoryAPI from '../../../apis/categories'
+import jobAPI from '../../../apis/jobs'
 export default {
   meta: {
     auth: { authority: 0 }
   },
   data() {
     return {
-      books: [],
+      jobs: [],
       categories: [],
       searchData: {},
     }
   },
   async fetch() {
-    this.categories = await categoryAPI.getAllCategories()
+    // this.categories = await categoryAPI.getAllCategories()
     const params = this.$route.params.searchData || {}
     this.searchData = {
-      titleSearch: params.titleSearch || "",
-      languageSelected: params.languageSelected || "",
-      categoriesSelectedId: params.categoriesSelectedId || this.categories.map(obj => obj.category_id),
+      titleSearch: params?.titleSearch || "",
+      province: params?.provinceSelected || "",
+      levelId: params?.levelId || "",
     }
-    this.books = await searchAPI.searchBooks(this.searchData)
+    this.jobs = await jobAPI.searchJobs(this.searchData)
   },
   methods: {
     async search(searchData) {
-      const res = await searchAPI.searchBooks(searchData)
-      this.books = res
+      const res = await jobAPI.searchJobs(searchData)
+      this.jobs = res
     },
   },
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

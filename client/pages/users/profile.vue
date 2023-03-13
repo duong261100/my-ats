@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="grid grid-cols-12 gap-[60px] p-[30px] w-[90%]">
+    <div class="grid grid-cols-12 gap-[60px] p-[30px] w-[90%] border-[1px] border-solid border-[#ddd] rounded-[4px]">
       <div class="col-span-4">
         <img class="w-full mb-[20px]"
           src="https://storage.googleapis.com/book-store-41a6b.appspot.com/1667411293360.post-image-1?GoogleAccessId=firebase-adminsdk-1lna4%40book-store-41a6b.iam.gserviceaccount.com&Expires=1893430800&Signature=rqfkHCI18Kd4GPAct0QXw%2BiaN3h8cpTt1I32idOzQQh%2FE8NUGFsi3TJwXGyfMlXlZjRLASDosr5w7hfsdVJRaBnKV1EEg4QUFBUh2FiOt5TP1b1xeSI2zOBNWb4ygPoXEYhMrybTWbjfLzowSg9UFLJnTthb8C0uPhuLb5xqWmvtGC5f4PGpnwWZGNjwBuePuiLCDptAccVRrIIrZjtzJyWDiA61sdRMoGIFb5TsI3gNQLKiUgmVRIH7VZLUbZpRFi5c7MaPaRsXYwg6UkUTJUngYjxdHT7jnoNMc9RDPXBX%2BU8M%2B9lreBlxXN0LO6mdNv7tG%2F5MykEiySd3GLB8YQ%3D%3D"
@@ -85,7 +85,7 @@ import userAPI from "../../apis/users"
 import axios from 'axios'
 export default {
   meta: {
-    auth: { authority: 0 }
+    auth: { authority: 1 }
   },
   data() {
     return {

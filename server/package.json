@@ -1,11 +1,13 @@
 {
+  "type": "module",
   "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "node seeding/index.js",
     "start": "nodemon dist/src/index.js",
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon src/index.js",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,6 +36,7 @@
     "sequelize-typescript": "^2.1.3"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@types/cors": "^2.8.12",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "@typescript-eslint/parser": "^5.39.0",

@@ -6,7 +6,7 @@
       </div>
       <div class="absolute right-0">
         <p>Link github: 
-          <a href="https://github.com/duong261100/book-store">https://github.com/duong261100/book-store</a>
+          <a href="https://github.com/duong261100/my-ats">https://github.com/duong261100/my-ats</a>
         </p>
       </div>
     </div>

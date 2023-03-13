@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen bg-[#080710]">
     <div class="absolute translate-x-[-50%] translate-y-[-50%] top-[50%] left-[50%] w-[400px] h-[550px] transition-all"
-      :class="{ 'h-[480px]': isLoginPage }">
+      :class="{ 'h-[520px]': isLoginPage }">
 
       <!-- Background -->
       <div class="w-full h-full">
@@ -10,10 +10,11 @@
       </div>
 
       <!-- Form -->
-      <div class="absolute top-0 w-full h-full px-[35px] py-[25px]
-      border-[2px] border-solid border-white/[.1] rounded-[10px]
-      bg-white/[.13] text-white font-poppins tracking-[0.5px]
-      backdrop-blur-[10px] shadow-slate-800 shadow-xl">
+      <div
+        class="absolute top-0 w-full h-full px-[35px] py-[25px]
+                                                                                border-[2px] border-solid border-white/[.1] rounded-[10px]
+                                                                                bg-white/[.13] text-white font-poppins tracking-[0.5px]
+                                                                                backdrop-blur-[10px] shadow-slate-800 shadow-xl">
 
         <!-- Login Form-->
         <div v-if="isLoginPage">
@@ -29,8 +30,7 @@
             <label>Password</label>
             <p v-if="errorMessageLogin.password" class="error-message">{{ errorMessageLogin.password }}</p>
           </div>
-          <input v-model="dataLogin.password" class="textInput-custom" type="password" required
-            placeholder="Password" />
+          <input v-model="dataLogin.password" class="textInput-custom" type="password" required placeholder="Password" />
 
           <div class="mt-[8px] text-[14px] font-light">Forgot password?</div>
 
@@ -38,6 +38,9 @@
           <div class="flex justify-between mt-[20px]">
             <button class="register-btn-custom" @click="isLoginPage = !isLoginPage">Register</button>
             <button class="register-btn-custom" @click="$router.push('/')">Back</button>
+          </div>
+          <div class="w-full mt-[20px]">
+            <div id="google-signin-btn">Google Login</div>
           </div>
         </div>
 
@@ -68,7 +71,7 @@
           <button class="login-btn-custom" @click="register()">Register</button>
           <div class="flex justify-between mt-[20px]">
             <button class="register-btn-custom" @click="isLoginPage = !isLoginPage">Login</button>
-            <button class="register-btn-custom" @click="$router.push('/')">Back</button>
+            <button class="register-btn-custom" @click="isLoginPage = !isLoginPage">Back</button>
           </div>
         </div>
       </div>
@@ -110,7 +113,56 @@ export default {
   created() {
     if (this.$auth.loggedIn) this.$router.push({ name: 'index' })
   },
+  // mounted() {
+  //   gapi.load('auth2', () => {
+  //     gapi.signin2.render('google-signin-btn', { // this is the button "id"
+  //       onsuccess: this.onSignIn // note, no "()" here
+  //     })
+  //   })
+  // },
+  mounted() {
+    let googleScript = document.createElement('script');
+    googleScript.src = 'https://accounts.google.com/gsi/client';
+    document.head.appendChild(googleScript);
+
+    window.addEventListener('load', () => {
+      window.google.accounts.id.initialize({
+        client_id: "724953140197-6nmrq14e01431303c29hh1j5re98jb0q.apps.googleusercontent.com",
+        callback: this.onSignIn
+      });
+      window.google.accounts.id.renderButton(
+        document.getElementById("google-signin-btn"),
+        { theme: "outline", size: "large" }  // customization attributes
+      );
+    })
+  },
   methods: {
+    async onSignIn(googleUser) {
+      var base64Url = googleUser.credential.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      const data = JSON.parse(jsonPayload);
+      console.log(data);
+
+      await axios.post("/candidates", {
+        data: {
+          fullname: data.name,
+          email: data.email,
+          password: 'duong123',
+          avatar_url: data.picture,
+        }
+      })
+
+      this.dataLogin = {
+        email: data.email,
+        password: 'duong123'
+      }
+
+      await this.login()
+
+    },
     validateLogin() {
       const emailRegex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
       this.errorMessageLogin.email = this.dataLogin.email.match(emailRegex) ? "" : "Please enter a valid email"
@@ -139,8 +191,13 @@ export default {
         let res = await this.$auth.loginWith('local', {
           data: this.dataLogin
         })
-        console.log('logined')
-        console.log(res)
+
+        if (res.data.user?.staff_code) {
+          this.$router.push("/admin")
+        }
+        else {
+          this.$router.push("/")
+        }
 
         this.$auth.strategy.token.set(res.data.accessToken)
         this.$auth.strategy.refreshToken.set(res.data.user.refresh_token)
@@ -160,12 +217,14 @@ export default {
         return
       }
       try {
-        const data = await userAPI.createUser({
-          email: this.dataRegister.email,
-          password: this.dataRegister.password,
-          fullname: this.dataRegister.fullname,
+        const data = await axios.post("/candidates", {
+          data: {
+            email: this.dataRegister.email,
+            password: this.dataRegister.password,
+            fullname: this.dataRegister.fullname,
+          }
         });
-        if (data.newUser) {
+        if (data) {
           this.dataLogin = {
             email: this.dataRegister.email,
             password: this.dataRegister.password,
@@ -175,7 +234,7 @@ export default {
       } catch (error) {
         this.$toast.error(error.response.data)
       }
-    }
+    },
   }
 }
 </script>
