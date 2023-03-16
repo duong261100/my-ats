@@ -24,6 +24,9 @@ export default {
         async: true,
         defer: true,
       },
+      {
+        src: 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js',
+      },
     ],
   },
 

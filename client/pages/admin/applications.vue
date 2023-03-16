@@ -35,7 +35,7 @@
             <v-col lg="2" class="text-center">
               <div class="flex gap-[10px] justify-center">
                 <v-btn color="primary" fab x-small>
-                  <NuxtLink class="!text-white" :to="`/resume/${application.candidate.id}`" target="_blank">
+                  <NuxtLink class="!text-white" :to="`/cv/${application.candidate.id}/edit`" target="_blank">
                     <v-icon class="!text-white">mdi-file-document-arrow-right</v-icon>
                   </NuxtLink>
                 </v-btn>

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full bg-[#eee]">
+    <div class="w-full h-full bg-[#eee] view">
         <div class="flex flex-col items-center">
             <div class="gjs-navbar flex justify-end items-center">
                 <div class="panel__basic-actions" />
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import mixin from '../../../components/CV/Builder/mixin';
+import mixinView from '../../../components/CV/Builder/mixinView';
 import CVTemplate1 from '../../../components/CV/Template/Template1/index.vue';
 import CVTemplate2 from '../../../components/CV//Template/Template2/index.vue';
 import Outline from '../../../components/CV/Builder/Outline.vue';
-
+import axios from 'axios'
 export default {
     name: 'CVBuilder',
     layout: 'empty',
@@ -31,12 +31,19 @@ export default {
         Outline,
     },
 
-    mixins: [mixin],
+    mixins: [mixinView],
+
+    async fetch() {
+        const res = await axios.get(`/resumes/${this.$route.params.id}/load-content`)
+        this.resume = res.data.content
+    },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "../../../components/CV/Builder/style.scss";
+
+
 
 #editor {
     width: 800px !important;

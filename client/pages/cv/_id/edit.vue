@@ -33,7 +33,7 @@ export default {
     },
 
     async fetch() {
-        const res = await axios.get('/resumes/1/load-content')
+        const res = await axios.get(`/resumes/1/load-content`)
         this.resume = res.data.content
     },
 

@@ -67,7 +67,7 @@ export default {
     searchHandle() {
       this.$router.push({
         name: 'jobs-search-params',
-        params: { searchData: { titleSearch: this.title, provinceSelected: this.address, levelId: 1 } }
+        params: { searchData: { titleSearch: this.title, provinceSelected: this.address, levelId: this.level } }
       })
     }
   }
